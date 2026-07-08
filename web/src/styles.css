@@ -1,0 +1,253 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --bg: #12141a;
+  --panel: #1b1e27;
+  --panel-2: #212530;
+  --text: #e6e4dc;
+  --muted: #9a99a3;
+  --border: #2c3040;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  line-height: 1.55;
+}
+
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  letter-spacing: 0.02em;
+}
+
+header p {
+  color: var(--muted);
+  max-width: 46rem;
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+.input-area {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+textarea {
+  width: 100%;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  font: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: 1px solid #55617f;
+}
+
+button {
+  align-self: flex-start;
+  background: #d8b46a;
+  color: #16130a;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.6rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.global-error {
+  margin-top: 1.2rem;
+  background: #3a2026;
+  border: 1px solid #6b3540;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+}
+
+/* --- perspektif kartları --- */
+.cards {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.1rem;
+  align-items: start;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.15rem 1.25rem 1.3rem;
+}
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.card-head h3 {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: italic;
+  text-align: right;
+}
+
+.card section {
+  margin-top: 0.9rem;
+}
+
+.card h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+  font-family: -apple-system, "Helvetica Neue", sans-serif;
+}
+
+.card ul {
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.92rem;
+}
+
+.card dl {
+  font-size: 0.92rem;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 0.25rem;
+}
+
+.card dt {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.missed {
+  background: var(--panel-2);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem 0.85rem;
+}
+
+.missed h4 {
+  color: #d8b46a;
+}
+
+.card-error {
+  color: #d98a95;
+  font-size: 0.9rem;
+}
+
+/* --- yükleniyor --- */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.4rem 0;
+}
+
+.pulse {
+  height: 0.85rem;
+  border-radius: 4px;
+  background: var(--panel-2);
+  animation: pulse 1.3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* --- sentez --- */
+.synthesis {
+  margin-top: 2rem;
+  background: linear-gradient(180deg, #232636, #1b1e27);
+  border: 1px solid #3a4058;
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem 1.7rem;
+}
+
+.synthesis h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.7rem;
+}
+
+.integrated {
+  white-space: pre-wrap;
+  font-size: 1rem;
+}
+
+.tone-note {
+  background: #33291c;
+  border: 1px solid #6b5a35;
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-size: 0.92rem;
+}
+
+.synth-grid {
+  margin-top: 1.3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.synth-grid h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+  font-family: -apple-system, "Helvetica Neue", sans-serif;
+}
+
+.synth-grid ul {
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+}
+
+.synth-wait {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-style: italic;
+}

@@ -1,0 +1,21 @@
+# Bağımlılıklar
+node_modules/
+
+# Build çıktısı
+web/dist/
+
+# Ortam değişkenleri / gizli anahtarlar
+.env
+.env.*
+!.env.example
+
+# Loglar
+*.log
+npm-debug.log*
+
+# İşletim sistemi
+.DS_Store
+
+# Editör
+.vscode/
+.idea/
