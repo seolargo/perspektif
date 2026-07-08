@@ -2,16 +2,16 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const client = new Anthropic();
+const client = new OpenAI();
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
 const PORT = process.env.PORT || 3001;
-const PERSPECTIVE_MODEL = "claude-haiku-4-5";
-const SYNTHESIS_MODEL = "claude-sonnet-5";
+const PERSPECTIVE_MODEL = "gpt-5-mini";
+const SYNTHESIS_MODEL = "gpt-5.1";
 
 // ---------------------------------------------------------------------------
 // Perspektifler: kod değil veri. Yeni bir "X aklı" eklemek = perspectives/
@@ -129,15 +129,20 @@ function buildPerspectiveSystemPrompt(p) {
 }
 
 async function runPerspective(p, text) {
-  const response = await client.messages.create({
+  const response = await client.chat.completions.create({
     model: PERSPECTIVE_MODEL,
-    max_tokens: 2500,
-    system: buildPerspectiveSystemPrompt(p),
-    output_config: { format: { type: "json_schema", schema: PERSPECTIVE_SCHEMA } },
-    messages: [{ role: "user", content: `HABER METNİ:\n\n${text}` }],
+    max_completion_tokens: 6000,
+    reasoning_effort: "minimal",
+    response_format: {
+      type: "json_schema",
+      json_schema: { name: "perspektif_analizi", strict: true, schema: PERSPECTIVE_SCHEMA },
+    },
+    messages: [
+      { role: "system", content: buildPerspectiveSystemPrompt(p) },
+      { role: "user", content: `HABER METNİ:\n\n${text}` },
+    ],
   });
-  const block = response.content.find((b) => b.type === "text");
-  return JSON.parse(block.text);
+  return JSON.parse(response.choices[0].message.content);
 }
 
 async function runSynthesis(results, text) {
@@ -162,20 +167,22 @@ async function runSynthesis(results, text) {
     analiz: r.data,
   }));
 
-  const response = await client.messages.create({
+  const response = await client.chat.completions.create({
     model: SYNTHESIS_MODEL,
-    max_tokens: 8000,
-    system,
-    output_config: { format: { type: "json_schema", schema: SYNTHESIS_SCHEMA } },
+    max_completion_tokens: 12000,
+    response_format: {
+      type: "json_schema",
+      json_schema: { name: "sentez", strict: true, schema: SYNTHESIS_SCHEMA },
+    },
     messages: [
+      { role: "system", content: system },
       {
         role: "user",
         content: `HABER METNİ:\n\n${text}\n\nPERSPEKTİF ANALİZLERİ (JSON):\n\n${JSON.stringify(payload, null, 2)}`,
       },
     ],
   });
-  const block = response.content.find((b) => b.type === "text");
-  return JSON.parse(block.text);
+  return JSON.parse(response.choices[0].message.content);
 }
 
 // ---------------------------------------------------------------------------
@@ -252,7 +259,7 @@ if (fs.existsSync(dist)) {
 
 app.listen(PORT, () => {
   console.log(`perspektif server → http://localhost:${PORT}`);
-  if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) {
-    console.warn("UYARI: ANTHROPIC_API_KEY tanımlı değil — /api/analyze çağrıları başarısız olur.");
+  if (!process.env.OPENAI_API_KEY) {
+    console.warn("UYARI: OPENAI_API_KEY tanımlı değil — /api/analyze çağrıları başarısız olur.");
   }
 });
