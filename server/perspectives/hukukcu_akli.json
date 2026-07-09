@@ -1,0 +1,19 @@
+{
+  "id": "hukukcu_akli",
+  "order": 5,
+  "display_name": "Hukukçu Aklı",
+  "cognitive_mode": "legal (hak/usul temelli okuma)",
+  "tagline": "Haklar, usul, hesap verebilirlik",
+  "color": "#c9a35f",
+  "mode_description": "Olaya hak ve usul lensiyle bak: kimin hangi hakkı ihlal ediliyor, hangi kurallar işletildi ya da atlandı, kim hangi mekanizmada hesap verir? İddia ile hüküm arasındaki farkı koru.",
+  "focus_questions": [
+    "Hangi hak, hangi kural ihlal edildi?",
+    "Usul doğru işletildi mi?",
+    "Kim, hangi merci önünde hesap verir?"
+  ],
+  "blind_spots": [
+    "Hukukun çözemediği ahlaki/duygusal boyut",
+    "Yasal ama adaletsiz durumlar",
+    "Mevzuatın gerçek hayatta nasıl yaşandığı"
+  ]
+}

@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { DEV_FILL } from "./devFill.js";
 
-const ORNEK_METIN = `Buraya analiz etmek istediğin haber metnini yapıştır. En az birkaç paragraf olursa perspektifler daha çok şey yakalar.`;
+const ORNEK_METIN = `Buraya analiz etmek istediğin haber metnini yapıştır.`;
 
 function CopyButton({ getText }) {
   const [copied, setCopied] = useState(false);
@@ -160,6 +160,21 @@ export default function App() {
   const [synthesis, setSynthesis] = useState(null);
   const [globalError, setGlobalError] = useState(null);
   const [running, setRunning] = useState(false);
+  const [available, setAvailable] = useState([]); // tüm akıllar (core + havuz)
+  const [picked, setPicked] = useState([]); // seçili havuz akıl id'leri
+
+  useEffect(() => {
+    fetch("/api/perspectives")
+      .then((r) => r.json())
+      .then((list) => {
+        setAvailable(list);
+        setPicked(list.slice(0, 3).map((p) => p.id)); // ilk üçü varsayılan seçili
+      })
+      .catch(() => {});
+  }, []);
+
+  const togglePick = (id) =>
+    setPicked((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]));
 
   const analyze = useCallback(async () => {
     setMeta(null);
@@ -173,7 +188,7 @@ export default function App() {
       const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, perspectives: picked }),
       });
 
       if (!res.ok) {
@@ -211,7 +226,7 @@ export default function App() {
     } finally {
       setRunning(false);
     }
-  }, [text]);
+  }, [text, picked]);
 
   const devFill = useCallback(() => {
     setGlobalError(null);
@@ -229,6 +244,24 @@ export default function App() {
         <p>Bir haber, birden çok akıl. Her perspektif neye takıldığını, nasıl yorumladığını ve — asıl önemlisi — neyi kaçırdığını söyler.</p>
       </header>
 
+      {available.length > 0 && (
+        <div className="pills">
+          {available.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              className={"pill" + (picked.includes(p.id) ? " on" : "")}
+              style={{ "--accent": p.color }}
+              onClick={() => togglePick(p.id)}
+              disabled={running}
+              title={p.tagline}
+            >
+              {p.display_name}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="input-area">
         <textarea
           value={text}
@@ -237,8 +270,8 @@ export default function App() {
           rows={9}
           disabled={running}
         />
-        <button onClick={analyze} disabled={running || text.trim().length < 80}>
-          {running ? "Perspektifler okuyor…" : "Analiz et"}
+        <button onClick={analyze} disabled={running || text.trim().length < 80 || picked.length === 0}>
+          {running ? "Perspektifler okuyor…" : picked.length === 0 ? "En az bir akıl seç" : "Analiz et"}
         </button>
         <button type="button" className="dev-fill" onClick={devFill} disabled={running}>
           Örnek analiz
@@ -246,6 +279,8 @@ export default function App() {
       </div>
 
       {globalError && <div className="global-error">{globalError}</div>}
+
+      {running && !meta && <div className="synth-wait">Metin ön-işleniyor, bu habere uygun akıllar seçiliyor…</div>}
 
       {synthesis && <SynthesisPanel data={synthesis} />}
 
@@ -266,6 +301,7 @@ export default function App() {
       {meta && !synthesis && running && Object.keys(results).length === meta.length && (
         <div className="synth-wait">Sentez hazırlanıyor…</div>
       )}
+
     </div>
   );
 }

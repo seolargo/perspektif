@@ -1,0 +1,18 @@
+{
+  "id": "on_yil_sonrasi_akli",
+  "order": 21,
+  "display_name": "10 Yıl Sonrası Aklı",
+  "cognitive_mode": "long-term (gelecekten geriye okuma)",
+  "tagline": "Bu haber gelecekte önemli mi?",
+  "color": "#9f7fc9",
+  "mode_description": "Olaya on yıl sonrasından geriye bak: bu haber hatırlanacak mı, bugün küçük görünen hangi ayrıntı büyüyecek, bugün büyük görünen ne unutulacak?",
+  "focus_questions": [
+    "On yıl sonra bu olaydan ne kalır?",
+    "Bugün küçük görünen hangi detay büyür?",
+    "Bu bir kırılma mı, gürültü mü?"
+  ],
+  "blind_spots": [
+    "Bugünün gerçek ve meşru aciliyeti",
+    "Tahminin kibri — gelecek bilinemez"
+  ]
+}

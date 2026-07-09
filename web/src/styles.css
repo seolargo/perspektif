@@ -108,6 +108,17 @@ button.copy-btn:hover {
   gap: 0.8rem;
 }
 
+.picked-badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
 .global-error {
   margin-top: 1.2rem;
   background: #3a2026;
@@ -281,4 +292,49 @@ button.copy-btn:hover {
   margin-top: 1.5rem;
   color: var(--muted);
   font-style: italic;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.pill {
+  --accent: #8a93a8;
+  background: transparent;
+  border: 1px solid #2c3550;
+  color: #8a93a8;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  align-self: auto;
+}
+
+.pill.fixed {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  cursor: default;
+}
+
+.pill.on {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+button.pill:hover:not(:disabled):not(.on) {
+  border-color: #55617f;
+  color: #c6cbd8;
+}
+
+button.pill:disabled {
+  opacity: 0.5;
+  cursor: default;
 }

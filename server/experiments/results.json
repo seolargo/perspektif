@@ -1,0 +1,246 @@
+{
+  "summary": {
+    "h1_ortalama_oran": 1.439827040476629,
+    "h1_inter": 0.19276625704733336,
+    "h1_intra": 0.14244755624951586,
+    "h2_coklu_kapsama": 0.9323809523809523,
+    "h2_tekli_kapsama": 1,
+    "h3_kapatma_orani": 0.33333333333333337
+  },
+  "results": [
+    {
+      "text_id": "park_avm",
+      "h1": {
+        "inter": 0.2182545969150823,
+        "intra": 0.23674795955284156,
+        "ratio": 0.9218858626165621
+      },
+      "h2": {
+        "toplam": 15,
+        "coklu": 14,
+        "tekli": 15,
+        "sadece_coklu": [],
+        "sadece_tekli": [
+          "Millet Bahçesi’nin kent merkezindeki son büyük yeşil alan olması"
+        ]
+      },
+      "h3": {
+        "toplam": 6,
+        "kapatilan": 3,
+        "detay": [
+          {
+            "kor_nokta": "[Erkek Aklı] Yaşlı sakinlerin psikolojik ve günlük yaşam bağımlılıklarıyla ilgili ayrıntılar metinde az.",
+            "kapatan": "Kadın Aklı"
+          },
+          {
+            "kor_nokta": "[Erkek Aklı] İstihdam iddiasının somut ölçütleri ve finansman modeli metinde yok.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Projeyi onaylayan hukuki-mevzuat sürecinin ayrıntıları ve maliyet dağılımı.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Projenin uzun vadeli çevresel ve deprem güvenliği etkilerinin nicel değerlendirmesi.",
+            "kapatan": "Piyasa Aklı"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] Projeden kimin ne kadar para veya imtiyaz kazanacağına dair somut çıkar tablosu yok.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] Mahalle esnafının destek nedenleri: kısa vadeli satış mi yoksa ranta ortaklık mı, belirsiz.",
+            "kapatan": "Kadın Aklı"
+          }
+        ]
+      }
+    },
+    {
+      "text_id": "deprem_konteyner",
+      "h1": {
+        "inter": 0.26975288688039273,
+        "intra": 0.1196677235302233,
+        "ratio": 2.254182489000586
+      },
+      "h2": {
+        "toplam": 15,
+        "coklu": 14,
+        "tekli": 15,
+        "sadece_coklu": [],
+        "sadece_tekli": [
+          "Kalıcı konutların yıl sonunda teslim edileceğinin önceden açıklanmış olması"
+        ]
+      },
+      "h3": {
+        "toplam": 6,
+        "kapatilan": 5,
+        "detay": [
+          {
+            "kor_nokta": "[Erkek Aklı] Kişisel travma ve duygusal yükün ayrıntılarını dikkate almıyor.",
+            "kapatan": "Kadın Aklı"
+          },
+          {
+            "kor_nokta": "[Erkek Aklı] Konteyner yaşamının günlük ilişkisel ve toplumsal etkilerini küçümsüyor.",
+            "kapatan": "Kadın Aklı"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Sistemik finansman veya denetim sorunları hakkında metinde bilgi yok; bu eksik kalır.",
+            "kapatan": "Erkek Aklı"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Konteyner hayatının uzun vadeli etkileri ve aile içi yük paylaşımı metinde göz ardı edilmiş.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] İnsan onuruna dair uzun vadeli travma ve eğitim kayıplarının parasal olmayan maliyeti.",
+            "kapatan": "Kadın Aklı"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] Müteahhitlerin çekilme sebeplerinin içsel finansal zorlanma veya tedarik zinciri aksaklıkları.",
+            "kapatan": "Erkek Aklı"
+          }
+        ]
+      }
+    },
+    {
+      "text_id": "faiz_kobi",
+      "h1": {
+        "inter": 0.11624681386155407,
+        "intra": 0.09313996388486745,
+        "ratio": 1.2480873838994564
+      },
+      "h2": {
+        "toplam": 14,
+        "coklu": 13,
+        "tekli": 14,
+        "sadece_coklu": [],
+        "sadece_tekli": [
+          "Ekonomistler dezenflasyonun başladığını öngörüyor."
+        ]
+      },
+      "h3": {
+        "toplam": 6,
+        "kapatilan": 0,
+        "detay": [
+          {
+            "kor_nokta": "[Erkek Aklı] Çalışanların ve KOBİ'lerin nakit akışı zamanlamasındaki kırılganlıkların detayları metinde yok.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Erkek Aklı] Bankaların sermaye/rezerv pozisyonu ve kredi risk iştahı hakkında bilgi eksik.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Politik kararın ekonomik büyüklüğü ve makro etkilerinin ölçüsü; kaç işletmenin etkilendiği.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Bankaların kâr/zarar ve düzenleyici yükümlülükleri ile alternatif finansman seçenekleri.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] Bireylerin psikolojik/etik motivasyonları ve toplumsal dayanışma biçimleri.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] Uzun vadeli yapısal reformların finansmanı ve siyasi maliyeti.",
+            "kapatan": "yok"
+          }
+        ]
+      }
+    },
+    {
+      "text_id": "hastane_siddet",
+      "h1": {
+        "inter": 0.1537694066953288,
+        "intra": 0.10409171481256692,
+        "ratio": 1.4772492409430873
+      },
+      "h2": {
+        "toplam": 15,
+        "coklu": 13,
+        "tekli": 15,
+        "sadece_coklu": [],
+        "sadece_tekli": [
+          "Hastane çalışanlarının ertesi gün iş bırakma eylemi yaparak olaya tepki göstermesi",
+          "Sağlık müdürlüğünün olayla ilgili soruşturma başlatması"
+        ]
+      },
+      "h3": {
+        "toplam": 6,
+        "kapatilan": 2,
+        "detay": [
+          {
+            "kor_nokta": "[Erkek Aklı] Olayın duygusal/insani boyutu ve saldırganın motivasyonunun ayrıntıları.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Erkek Aklı] Tıbbi sonuçların uzun vadedeki etkileri ve mağdur doktorun kişisel ihtiyaçları.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Adli sürecin nasıl ilerlediği ve mağdur doktorun duygusal/ekonomik durumu.",
+            "kapatan": "Piyasa Aklı"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Topluluk içindeki destek ağları, hastaların yakınlarının çaresizliği ve alternatif çözümler.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] İnsan davranışını sadece teşvikle açıklayamama: öfke, umutsuzluk, travma faktörleri.",
+            "kapatan": "Kadın Aklı"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] Hukuki süreçlerin politik/sosyal baskı etkisiyle şekillenebileceği detayları.",
+            "kapatan": "yok"
+          }
+        ]
+      }
+    },
+    {
+      "text_id": "teknoloji_isten_cikarma",
+      "h1": {
+        "inter": 0.20580758088430895,
+        "intra": 0.15859041946708008,
+        "ratio": 1.2977302259234527
+      },
+      "h2": {
+        "toplam": 15,
+        "coklu": 15,
+        "tekli": 15,
+        "sadece_coklu": [],
+        "sadece_tekli": []
+      },
+      "h3": {
+        "toplam": 6,
+        "kapatilan": 0,
+        "detay": [
+          {
+            "kor_nokta": "[Erkek Aklı] İşten çıkarılan bireylerin ekonomik ve psikososyal ayrıntıları metinde yok.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Erkek Aklı] Otomasyonun yüzde 70 hesaplamasının metrikleri, zaman dilimi ve ölçüm yöntemi bilinmiyor.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Olayın sektörel büyüklüğünü ve kaç kişinin benzer risk altında olduğunu sayısal olarak göstermiyor.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Kadın Aklı] Tazminatın veya yeniden beceri programının aile bütçesine ve günlük hayata etkisini nicel olarak hesaplamıyor.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] İşten çıkarılanların finansal detayları ve tazminatın yeterliliği metinde yok.",
+            "kapatan": "yok"
+          },
+          {
+            "kor_nokta": "[Piyasa Aklı] Otomasyonun iddia edilen yüzde 70 etkisinin nasıl ölçüldüğü ve bağımsız doğrulaması belirsiz.",
+            "kapatan": "yok"
+          }
+        ]
+      }
+    }
+  ]
+}

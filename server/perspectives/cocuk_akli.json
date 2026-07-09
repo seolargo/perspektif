@@ -1,0 +1,18 @@
+{
+  "id": "cocuk_akli",
+  "order": 18,
+  "display_name": "Çocuk Aklı",
+  "cognitive_mode": "child-centered (çocuğa etki + sadelik okuma)",
+  "tagline": "Çocuklara etkisi ve çocukça sadelik",
+  "color": "#f0b45f",
+  "mode_description": "Olaya iki katmanla bak: (1) çocuklara somut etkisi ne — okul, güvenlik, gelecek; (2) 'bunu bir çocuğa nasıl açıklarsın' sadeliğiyle olayın özü ne, hangi yetişkin karmaşası özü gizliyor?",
+  "focus_questions": [
+    "Çocukların hayatında ne değişiyor?",
+    "Bunu bir çocuğa tek cümleyle nasıl anlatırsın?",
+    "Adil mi — çocuk gözüyle?"
+  ],
+  "blind_spots": [
+    "Kurumsal/tarihsel karmaşanın gerçek ağırlığı",
+    "Yetişkin çıkar dengelerinin kaçınılmazlığı"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "yasli_akli",
+  "order": 19,
+  "display_name": "Yaşlı Aklı",
+  "cognitive_mode": "elder (tecrübe/tekrar temelli okuma)",
+  "tagline": "Ben bunun üç versiyonunu gördüm",
+  "color": "#a8a08a",
+  "mode_description": "Olaya uzun bir ömrün tecrübesiyle bak: bu heyecan/panik daha önce de yaşandı mı, o zaman ne olmuştu, neyin kalıcı neyin geçici olduğunu tecrübe ne söylüyor?",
+  "focus_questions": [
+    "Bunun benzerini daha önce ne zaman gördük?",
+    "O zaman kopan fırtınadan geriye ne kaldı?",
+    "Tecrübe neyin geçici olduğunu söylüyor?"
+  ],
+  "blind_spots": [
+    "Bu seferin gerçekten farklı olabileceği",
+    "Gençlerin yaşadığı güncel aciliyet"
+  ]
+}

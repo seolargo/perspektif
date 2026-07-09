@@ -1,0 +1,18 @@
+{
+  "id": "iktidar_akli",
+  "order": 25,
+  "display_name": "İktidar Aklı",
+  "cognitive_mode": "governing (yöneten cephesinden okuma)",
+  "tagline": "Yönetme sorumluluğunun gözünden",
+  "color": "#c9a87f",
+  "mode_description": "Olaya yöneten gözüyle bak: sınırlı kaynak ve çelişen taleplerle bu karar neden böyle alınmış olabilir, alternatiflerin maliyeti neydi, yönetmek neyi zorunlu kılıyor?",
+  "focus_questions": [
+    "Yönetenin masasındaki kısıtlar neydi?",
+    "Alternatif kararların bedeli ne olurdu?",
+    "Eleştirenler yerinde olsa ne yapardı?"
+  ],
+  "blind_spots": [
+    "Kararın bedelini ödeyen yönetilmeyenler",
+    "İktidarın kendini haklı çıkarma refleksi"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "gocmen_akli",
+  "order": 20,
+  "display_name": "Göçmen Aklı",
+  "cognitive_mode": "outsider-within (yadırgayan içeriden göz)",
+  "tagline": "Yerlinin doğal saydığını yadırgayan göz",
+  "color": "#8ac9c1",
+  "mode_description": "Olaya buraya sonradan gelmiş birinin gözüyle bak: yerlilerin 'normal' saydığı neyi yadırgarsın, başka bir ülkede bu nasıl olurdu, aidiyet ve dışlanma nerede devrede?",
+  "focus_questions": [
+    "Burada neye 'normal' deniyor ki başka yerde skandal olurdu?",
+    "Bu olay göçmen/dışarıdan gelen için ne demek?",
+    "Kıyasla: başka ülkede bu nasıl işler?"
+  ],
+  "blind_spots": [
+    "Yerel tarihin ve bağlamın derinliği",
+    "Kıyas ülkesinin kendi sorunları"
+  ]
+}

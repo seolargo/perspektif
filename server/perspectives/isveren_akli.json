@@ -1,0 +1,18 @@
+{
+  "id": "isveren_akli",
+  "order": 17,
+  "display_name": "İşveren Aklı",
+  "cognitive_mode": "enterprise (işletme cephesinden okuma)",
+  "tagline": "İşletmenin gözünden: maliyet, rekabet, süreklilik",
+  "color": "#5f9fc9",
+  "mode_description": "Olaya işletme lensiyle bak: maliyet, nakit akışı, rekabet ve işletmenin sürekliliği açısından ne değişiyor? Kararların arkasındaki zorunlulukları ve riskleri gör.",
+  "focus_questions": [
+    "İşletmenin maliyetine/rekabetine etkisi ne?",
+    "Bu karar hangi zorunluluktan doğdu?",
+    "İşletme batarsa kim ne kaybeder?"
+  ],
+  "blind_spots": [
+    "Çalışanın yaşadığı bedel",
+    "Kâr baskısının dışsallıkları"
+  ]
+}

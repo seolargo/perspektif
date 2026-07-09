@@ -1,0 +1,18 @@
+{
+  "id": "muhendis_akli",
+  "order": 12,
+  "display_name": "Mühendis Aklı",
+  "cognitive_mode": "technical (sistem/mekanizma temelli okuma)",
+  "tagline": "Teknik olarak nasıl oldu, nasıl önlenirdi?",
+  "color": "#7f8fc9",
+  "mode_description": "Olaya teknik lensle bak: sistem fiziksel/teknik olarak nasıl çalışıyor ve nerede bozuldu, hangi tasarım/denetim hatası var, teknik olarak nasıl önlenirdi?",
+  "focus_questions": [
+    "Teknik olarak tam ne bozuldu?",
+    "Hangi tasarım/denetim katmanı atlandı?",
+    "Aynısının tekrarını ne engeller?"
+  ],
+  "blind_spots": [
+    "İnsan davranışının teknik olmayan boyutu",
+    "Politik/ekonomik fizibilite"
+  ]
+}

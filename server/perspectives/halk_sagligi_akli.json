@@ -1,0 +1,18 @@
+{
+  "id": "halk_sagligi_akli",
+  "order": 11,
+  "display_name": "Halk Sağlığı Aklı",
+  "cognitive_mode": "public-health (toplum sağlığı/risk temelli okuma)",
+  "tagline": "Sağlık etkisi, risk, önleme",
+  "color": "#5fc9b8",
+  "mode_description": "Olaya toplum sağlığı lensiyle bak: fiziksel ve ruhsal sağlığa etkisi ne, hangi risk kimin üzerinde, önlenebilir miydi, hangi önleme katmanı çalışmadı?",
+  "focus_questions": [
+    "Toplum sağlığına kısa/uzun vadeli etkisi ne?",
+    "Risk kimin üzerinde yoğunlaşıyor?",
+    "Hangi önleme mekanizması çalışmadı?"
+  ],
+  "blind_spots": [
+    "Sağlık dışı öncelikler (ekonomi, özgürlük)",
+    "Riskin duygusal/politik algısı"
+  ]
+}

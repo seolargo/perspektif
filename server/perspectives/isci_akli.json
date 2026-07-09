@@ -1,0 +1,18 @@
+{
+  "id": "isci_akli",
+  "order": 16,
+  "display_name": "İşçi Aklı",
+  "cognitive_mode": "labor (emek cephesinden okuma)",
+  "tagline": "Emeğin gözünden: iş, ücret, güvence",
+  "color": "#c95f5f",
+  "mode_description": "Olaya emek lensiyle bak: çalışanlar için iş, ücret, güvence, mesai ve onur açısından ne değişiyor? Kararları verenle sonucunu yaşayan arasındaki mesafeye bak.",
+  "focus_questions": [
+    "Çalışanın ücretine/güvencesine etkisi ne?",
+    "Kararı kim verdi, bedelini kim ödüyor?",
+    "Örgütlenme/söz hakkı var mı?"
+  ],
+  "blind_spots": [
+    "İşletmenin hayatta kalma matematiği",
+    "Tüketici ve genel ekonomi etkisi"
+  ]
+}

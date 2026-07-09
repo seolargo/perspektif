@@ -2,190 +2,19 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import OpenAI from "openai";
+import {
+  PERSPECTIVES_DIR,
+  loadPerspectives,
+  runPreprocessing,
+  runPerspective,
+  runSynthesis,
+} from "./lib.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const client = new OpenAI();
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
 const PORT = process.env.PORT || 3001;
-const PERSPECTIVE_MODEL = "gpt-5-mini";
-const SYNTHESIS_MODEL = "gpt-5.1";
-
-// ---------------------------------------------------------------------------
-// Perspektifler: kod değil veri. Yeni bir "X aklı" eklemek = perspectives/
-// altına bir JSON dosyası koymak. Deploy gerektirmez, sunucu her istekte okur.
-// ---------------------------------------------------------------------------
-function loadPerspectives() {
-  const dir = path.join(here, "perspectives");
-  return fs
-    .readdirSync(dir)
-    .filter((f) => f.endsWith(".json"))
-    .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")))
-    .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
-}
-
-// Her perspektifin çıktısı üç bölüm: neye takıldı / nasıl yorumladı / neyi
-// kaçırdı. "yorumu" alanı Entman'ın dört çerçeveleme işlevine oturur.
-const PERSPECTIVE_SCHEMA = {
-  type: "object",
-  properties: {
-    takildigi: {
-      type: "array",
-      items: { type: "string" },
-      description:
-        "Bu perspektifin metinde en yüksek belirginlik atadığı 2-3 olgu/detay. Her biri tek kısa cümle.",
-    },
-    yorumu: {
-      type: "object",
-      properties: {
-        problem_tanimi: { type: "string", description: "Bu perspektife göre asıl mesele ne?" },
-        nedensel_yorum: { type: "string", description: "Bu perspektife göre buna ne sebep oldu?" },
-        ahlaki_degerlendirme: { type: "string", description: "Bu perspektife göre kim/ne nasıl değerlendirilmeli?" },
-        cozum_onerisi: { type: "string", description: "Bu perspektife göre ne yapılmalı?" },
-      },
-      required: ["problem_tanimi", "nedensel_yorum", "ahlaki_degerlendirme", "cozum_onerisi"],
-      additionalProperties: false,
-    },
-    kacirdigi: {
-      type: "array",
-      items: { type: "string" },
-      description:
-        "Bu perspektifin bilinen kör noktaları yüzünden bu metinde gözden kaçırdığı 2 şey. Her biri tek kısa cümle.",
-    },
-    duygusal_yuk: {
-      type: "number",
-      description: "Metnin duygusal yükü, 0 (nötr haber) ile 1 (ağır tanıklık/travma) arası.",
-    },
-  },
-  required: ["takildigi", "yorumu", "kacirdigi", "duygusal_yuk"],
-  additionalProperties: false,
-};
-
-const SYNTHESIS_SCHEMA = {
-  type: "object",
-  properties: {
-    uzlasma: {
-      type: "array",
-      items: { type: "string" },
-      description: "Perspektiflerin ortaklaştığı noktalar.",
-    },
-    catisma: {
-      type: "array",
-      items: { type: "string" },
-      description: "Perspektiflerin gerçekten ayrıştığı noktalar — ton farkı değil, içerik farkı.",
-    },
-    kor_nokta_kapatmalari: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          kim: { type: "string", description: "Kör noktayı kapatan perspektifin adı" },
-          neyi_kapatti: { type: "string", description: "Hangi perspektifin hangi kör noktasını nasıl kapattı" },
-        },
-        required: ["kim", "neyi_kapatti"],
-        additionalProperties: false,
-      },
-    },
-    entegre_okuma: {
-      type: "string",
-      description:
-        "Normal insan aklı: tüm perspektiflerin birleşiminden çıkan, tek tek hiçbirinde olmayan bütünlüklü okuma. Tek kısa paragraf, en fazla 4 cümle.",
-    },
-    ton_notu: {
-      type: "string",
-      description:
-        "Metin ağır bir tanıklık/travma içeriyorsa buraya kısa bir çerçeve notu yaz ('bu bir tanıklık, analiz nesnesi değil' ruhunda). İçerik nötr ise boş string bırak.",
-    },
-  },
-  required: ["uzlasma", "catisma", "kor_nokta_kapatmalari", "entegre_okuma", "ton_notu"],
-  additionalProperties: false,
-};
-
-// Sistem promptu config'ten derlenir: içerde bilişsel mod, dışarda kullanıcıya
-// gösterilen isim. Karikatürleşmeye karşı sabit koruma her perspektife eklenir.
-function buildPerspectiveSystemPrompt(p) {
-  return [
-    `Sen çok perspektifli bir haber analiz motorunda TEK bir bilişsel perspektifi temsil ediyorsun.`,
-    ``,
-    `PERSPEKTİF ADI (kullanıcıya görünen): ${p.display_name}`,
-    `BİLİŞSEL MOD (senin gerçek tanımın): ${p.cognitive_mode}`,
-    ``,
-    `${p.mode_description}`,
-    ``,
-    `Odak soruların:`,
-    ...p.focus_questions.map((q) => `- ${q}`),
-    ``,
-    `Bilinen kör noktaların (bunlara karşı dürüst ol):`,
-    ...p.blind_spots.map((b) => `- ${b}`),
-    ``,
-    `KURALLAR:`,
-    `- Bu bir dikkat deseni simülasyonu, bir kimlik taklidi değil. Stereotip ve karikatür üretme; "${p.display_name}" adı bir etiket, senin işin o etiketin arkasındaki bilişsel modu ciddiyetle uygulamak.`,
-    `- Sadece metinde olana dayan; metinde olmayan olgu uydurma.`,
-    `- "kacirdigi" alanı bu analizin en değerli kısmı: kör noktaların yüzünden bu metinde gerçekten gözden kaçırmış olabileceğin şeyleri yaz.`,
-    `- Türkçe yaz.`,
-    `- KISA yaz: her alan tek cümle, madde başına en fazla 15 kelime. Uzun paragraf yok.`,
-  ].join("\n");
-}
-
-async function runPerspective(p, text) {
-  const response = await client.chat.completions.create({
-    model: PERSPECTIVE_MODEL,
-    max_completion_tokens: 6000,
-    reasoning_effort: "minimal",
-    response_format: {
-      type: "json_schema",
-      json_schema: { name: "perspektif_analizi", strict: true, schema: PERSPECTIVE_SCHEMA },
-    },
-    messages: [
-      { role: "system", content: buildPerspectiveSystemPrompt(p) },
-      { role: "user", content: `HABER METNİ:\n\n${text}` },
-    ],
-  });
-  return JSON.parse(response.choices[0].message.content);
-}
-
-async function runSynthesis(results, text) {
-  const system = [
-    `Sen çok perspektifli bir haber analiz motorunun SENTEZ katmanısın — "normal insan aklı".`,
-    `Ama bu ayrı bir perspektif değil, bir META katman: sana N perspektifin aynı haber için ürettiği analizler verilecek.`,
-    ``,
-    `Görevin:`,
-    `1. Perspektifler nerede uzlaşıyor, nerede gerçekten çatışıyor?`,
-    `2. Kimin kör noktasını kim kapatıyor? ("kacirdigi" alanlarını diğerlerinin "takildigi" alanlarıyla çaprazla)`,
-    `3. Entegre okuma: birleşimden çıkan, tek tek hiçbir perspektifte olmayan bütünlüklü okumayı yaz.`,
-    ``,
-    `Perspektiflerin ortalama duygusal_yuk değeri yüksekse (≈0.7+), ton_notu alanına kısa bir çerçeve yaz:`,
-    `bu bir tanıklıktır, analiz nesnesi değil — analitik dil kurbanları nesneleştirmemeli. Nötr içerikte ton_notu boş string olsun.`,
-    ``,
-    `Türkçe yaz. Perspektiflerin söylediklerini özetleme; onların ÜZERİNE çık.`,
-    `KISA yaz: listelerde en fazla 3 madde, madde başına tek cümle. Entegre okuma tek kısa paragraf.`,
-  ].join("\n");
-
-  const payload = results.map((r) => ({
-    perspektif: r.perspective.display_name,
-    bilissel_mod: r.perspective.cognitive_mode,
-    analiz: r.data,
-  }));
-
-  const response = await client.chat.completions.create({
-    model: SYNTHESIS_MODEL,
-    max_completion_tokens: 12000,
-    response_format: {
-      type: "json_schema",
-      json_schema: { name: "sentez", strict: true, schema: SYNTHESIS_SCHEMA },
-    },
-    messages: [
-      { role: "system", content: system },
-      {
-        role: "user",
-        content: `HABER METNİ:\n\n${text}\n\nPERSPEKTİF ANALİZLERİ (JSON):\n\n${JSON.stringify(payload, null, 2)}`,
-      },
-    ],
-  });
-  return JSON.parse(response.choices[0].message.content);
-}
 
 // ---------------------------------------------------------------------------
 // API
@@ -201,11 +30,65 @@ app.get("/api/perspectives", (_req, res) => {
   );
 });
 
+// UI'dan yeni perspektif tanımlama: config dosyası olarak yazılır, bir sonraki
+// analizde otomatik devreye girer.
+function slugify(name) {
+  const map = { ç: "c", ğ: "g", ı: "i", ö: "o", ş: "s", ü: "u", İ: "i" };
+  return name
+    .toLowerCase()
+    .replace(/[çğıöşüİ]/g, (c) => map[c] ?? c)
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+app.post("/api/perspectives", (req, res) => {
+  const b = req.body ?? {};
+  const asList = (v) =>
+    Array.isArray(v) ? v.map((s) => String(s).trim()).filter(Boolean) : [];
+  const display_name = String(b.display_name ?? "").trim();
+  const mode_description = String(b.mode_description ?? "").trim();
+  const focus_questions = asList(b.focus_questions);
+  const blind_spots = asList(b.blind_spots);
+
+  if (display_name.length < 2 || display_name.length > 40)
+    return res.status(400).json({ error: "İsim 2-40 karakter olmalı." });
+  if (mode_description.length < 20)
+    return res.status(400).json({ error: "Mod tanımı en az birkaç cümle olmalı." });
+  if (focus_questions.length < 1 || blind_spots.length < 1)
+    return res.status(400).json({ error: "En az bir odak sorusu ve bir kör nokta gerekli." });
+
+  const id = slugify(display_name);
+  if (!id) return res.status(400).json({ error: "İsimden geçerli bir kimlik üretilemedi." });
+  const file = path.join(PERSPECTIVES_DIR, `${id}.json`);
+  if (fs.existsSync(file))
+    return res.status(409).json({ error: `"${display_name}" zaten var.` });
+
+  const existing = loadPerspectives();
+  const perspective = {
+    id,
+    order: Math.max(0, ...existing.map((p) => p.order ?? 0)) + 1,
+    display_name,
+    cognitive_mode: String(b.cognitive_mode ?? "").trim() || display_name,
+    tagline: String(b.tagline ?? "").trim(),
+    color: /^#[0-9a-fA-F]{6}$/.test(String(b.color ?? "")) ? b.color : "#8a93a8",
+    mode_description,
+    focus_questions,
+    blind_spots,
+  };
+  fs.writeFileSync(file, JSON.stringify(perspective, null, 2) + "\n");
+  res.status(201).json({ id, display_name });
+});
+
 // NDJSON stream: her perspektif bittiği anda kart dolar, sonda sentez gelir.
 app.post("/api/analyze", async (req, res) => {
   const text = (req.body?.text ?? "").trim();
   if (text.length < 80) {
     return res.status(400).json({ error: "Analiz için en az birkaç cümlelik bir haber metni yapıştır." });
+  }
+  const requested = Array.isArray(req.body?.perspectives) ? req.body.perspectives : [];
+  const perspectives = loadPerspectives().filter((p) => requested.includes(p.id));
+  if (perspectives.length === 0) {
+    return res.status(400).json({ error: "En az bir akıl seç." });
   }
 
   res.setHeader("Content-Type", "application/x-ndjson; charset=utf-8");
@@ -213,7 +96,7 @@ app.post("/api/analyze", async (req, res) => {
   res.flushHeaders?.();
   const send = (obj) => res.write(JSON.stringify(obj) + "\n");
 
-  const perspectives = loadPerspectives();
+  // Hangi akılların katılacağını kullanıcı istekte seçer (UI'daki pill'ler).
   send({
     type: "meta",
     perspectives: perspectives.map((p) => ({
@@ -224,11 +107,23 @@ app.post("/api/analyze", async (req, res) => {
     })),
   });
 
+  // Preprocessing: yapılandırılmış olay çıkarımı. Başarısız olursa perspektifler
+  // ham metne düşer (fallback), analiz durmaz.
+  let event = null;
+  try {
+    ({ event } = await runPreprocessing(text));
+    send({ type: "event", data: event });
+  } catch (err) {
+    send({ type: "preprocess_error", message: String(err?.message ?? err) });
+  }
+
+  const content = event ? JSON.stringify(event, null, 2) : text;
+
   // Fan-out: tüm perspektifler paralel; biten stream'e düşer.
   const settled = await Promise.all(
     perspectives.map(async (p) => {
       try {
-        const data = await runPerspective(p, text);
+        const data = await runPerspective(p, content, Boolean(event));
         send({ type: "perspective", id: p.id, data });
         return { perspective: p, data };
       } catch (err) {

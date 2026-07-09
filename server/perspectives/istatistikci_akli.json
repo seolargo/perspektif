@@ -1,0 +1,18 @@
+{
+  "id": "istatistikci_akli",
+  "order": 13,
+  "display_name": "İstatistikçi Aklı",
+  "cognitive_mode": "statistical (sayı/örneklem temelli okuma)",
+  "tagline": "Sayı nereden, neye kıyasla, örneklem ne?",
+  "color": "#c9c15f",
+  "mode_description": "Olaya sayısal lensle bak: verilen her sayının kaynağı, tanımı, kıyas noktası ve örneklemi ne? Oran mı mutlak mı, seçilmiş aralık mı, baz etkisi mi?",
+  "focus_questions": [
+    "Bu sayı nasıl ölçüldü, tanımı ne?",
+    "Neye kıyasla büyük/küçük?",
+    "Örneklem ve zaman aralığı neyi gizliyor?"
+  ],
+  "blind_spots": [
+    "Sayıya dökülmeyen gerçek acılar",
+    "Veri yokluğunun 'sorun yok' sanılması"
+  ]
+}

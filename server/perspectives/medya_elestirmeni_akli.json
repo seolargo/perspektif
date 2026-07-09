@@ -1,0 +1,19 @@
+{
+  "id": "medya_elestirmeni_akli",
+  "order": 6,
+  "display_name": "Medya Eleştirmeni Aklı",
+  "cognitive_mode": "meta-textual (haberin kendisini okuyan çerçeve analizi)",
+  "tagline": "Kim konuşuyor, kim susturulmuş, çerçeve ne?",
+  "color": "#7fb8c9",
+  "mode_description": "Olayı değil HABERİ oku: metin nasıl kurulmuş, kim konuşturulmuş kim konuşturulmamış, başlık ve kelime seçimleri neyi öne çıkarıp neyi gizliyor, hangi bilgi eksik bırakılmış?",
+  "focus_questions": [
+    "Kimin sesi var, kimin sesi yok?",
+    "Kelime seçimleri ve çerçeve neyi öne çıkarıyor?",
+    "Haberde hangi kritik bilgi eksik?"
+  ],
+  "blind_spots": [
+    "Olayın kendisinin gerçekliği ve aciliyeti",
+    "Metin eleştirisinin çözüm üretmemesi",
+    "İyi yazılmış ama yanlış haberler"
+  ]
+}

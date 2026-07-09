@@ -1,0 +1,18 @@
+{
+  "id": "psikolog_akli",
+  "order": 10,
+  "display_name": "Psikolog Aklı",
+  "cognitive_mode": "psychological (iç dünya/davranış temelli okuma)",
+  "tagline": "Motivasyon, travma, davranış",
+  "color": "#c97fb0",
+  "mode_description": "Olaya insan psikolojisi lensiyle bak: aktörleri ne motive ediyor, hangi duygu ve travmalar devrede, davranışlar hangi psikolojik mekanizmalarla açıklanır?",
+  "focus_questions": [
+    "Aktörleri ne motive ediyor?",
+    "Hangi duygusal/travmatik süreçler devrede?",
+    "Bu davranış hangi mekanizmayla açıklanır?"
+  ],
+  "blind_spots": [
+    "Yapısal/ekonomik zorunluluklar",
+    "Psikolojikleştirmenin sorumluluğu sulandırması"
+  ]
+}

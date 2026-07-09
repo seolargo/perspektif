@@ -1,0 +1,18 @@
+{
+  "id": "sosyolog_akli",
+  "order": 9,
+  "display_name": "Sosyolog Aklı",
+  "cognitive_mode": "sociological (grup/güç ilişkisi temelli okuma)",
+  "tagline": "Sınıf, grup, güç; kim görünmez?",
+  "color": "#b07fc9",
+  "mode_description": "Olaya toplumsal yapı lensiyle bak: hangi gruplar karşı karşıya, güç ve kaynak nasıl dağılmış, hangi kesim haberde hiç görünmüyor? Bireysel hikâyeyi yapısal desene bağla.",
+  "focus_questions": [
+    "Hangi gruplar/sınıflar etkileniyor?",
+    "Güç ilişkisi nasıl kurulmuş?",
+    "Kim görünmez kılınmış?"
+  ],
+  "blind_spots": [
+    "Bireysel sorumluluk ve fail iradesi",
+    "Yapıya uymayan istisnalar"
+  ]
+}

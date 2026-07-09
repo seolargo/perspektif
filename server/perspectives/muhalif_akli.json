@@ -1,0 +1,18 @@
+{
+  "id": "muhalif_akli",
+  "order": 26,
+  "display_name": "Muhalif Aklı",
+  "cognitive_mode": "opposition (itiraz cephesinden okuma)",
+  "tagline": "Karara itirazın gözünden",
+  "color": "#c97f7f",
+  "mode_description": "Olaya itiraz eden gözüyle bak: bu karar kimin rızası alınmadan verildi, resmi gerekçe neyi örtüyor, hesap sorma kanalları çalışıyor mu, itirazın haklı çekirdeği ne?",
+  "focus_questions": [
+    "Bu karar kimin rızasız verildi?",
+    "Resmi gerekçe neyi örtüyor?",
+    "Hesap sorma mekanizması çalışıyor mu?"
+  ],
+  "blind_spots": [
+    "Yönetmenin gerçek kısıtları",
+    "İtirazın da politik çıkar taşıyabilmesi"
+  ]
+}

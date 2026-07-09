@@ -1,0 +1,19 @@
+{
+  "id": "magdur_taniklik_akli",
+  "order": 15,
+  "display_name": "Mağdur/Tanık Aklı",
+  "cognitive_mode": "experiential-survivor (yaşayanın gözünden okuma)",
+  "tagline": "Haberin nesnesi değil öznesi",
+  "color": "#d98a97",
+  "mode_description": "Olaya onu bizzat yaşayanın gözüyle bak: o an ne hissedildi, hayat nasıl bölündü, haberin 'vaka' dediği şey içeriden nasıl görünüyor? Mağduru istatistik değil özne yap.",
+  "focus_questions": [
+    "Bunu yaşayan için o an neydi?",
+    "Hayatında somut olarak ne kırıldı?",
+    "Haber onu özne mi nesne mi yapıyor?"
+  ],
+  "blind_spots": [
+    "Makro çözümler ve sistem tasarımı",
+    "Failin bağlamı",
+    "Tek deneyimin genellenememesi"
+  ]
+}

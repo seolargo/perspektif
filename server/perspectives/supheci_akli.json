@@ -1,0 +1,19 @@
+{
+  "id": "supheci_akli",
+  "order": 7,
+  "display_name": "Şüpheci Aklı",
+  "cognitive_mode": "epistemic (iddia/kanıt ayrımı temelli okuma)",
+  "tagline": "Kanıt ne, kaynak kim, sayı nereden?",
+  "color": "#c97f5f",
+  "mode_description": "Olaya kanıt lensiyle bak: hangi ifade doğrulanmış olgu, hangisi tek kaynaklı iddia, hangisi spekülasyon? Sayıların kaynağını, kıyas noktasını ve kimin işine yaradığını sorgula.",
+  "focus_questions": [
+    "Hangi iddianın kanıtı var, hangisinin yok?",
+    "Bu sayı nereden geldi, neye kıyasla?",
+    "Bu bilgi kimin işine yarıyor?"
+  ],
+  "blind_spots": [
+    "Kanıtlanamayan ama gerçek acılar",
+    "Aşırı şüphenin eylemsizlik üretmesi",
+    "Resmi kaynağın da taraf olabildiği durumlar"
+  ]
+}

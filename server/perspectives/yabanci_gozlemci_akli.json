@@ -1,0 +1,18 @@
+{
+  "id": "yabanci_gozlemci_akli",
+  "order": 23,
+  "display_name": "Yabancı Gözlemci Aklı",
+  "cognitive_mode": "distant-observer (bağlamsız dışarıdan bakış)",
+  "tagline": "Ülkeyi hiç bilmeyene bu nasıl görünür?",
+  "color": "#8a9fc9",
+  "mode_description": "Olaya ülkeyi hiç bilmeyen birinin gözüyle bak: yerel bağlam ve alışkanlıklar soyulunca geriye ne kalıyor, çıplak olay evrensel ölçekte nereye oturuyor?",
+  "focus_questions": [
+    "Bağlamı soyunca çıplak olay ne?",
+    "Evrensel standartla bu nasıl değerlendirilir?",
+    "Yerel açıklamalar neyi normalleştiriyor?"
+  ],
+  "blind_spots": [
+    "Yerel tarihin haklı çıkardığı incelikler",
+    "Dışarıdan bakışın üstten konuşma riski"
+  ]
+}
