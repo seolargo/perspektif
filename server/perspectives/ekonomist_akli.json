@@ -1,7 +1,7 @@
 {
   "id": "ekonomist_akli",
   "order": 3,
-  "display_name": "Ekonomist Aklı",
+  "display_name": "Teşvik Bakışı",
   "cognitive_mode": "incentive-based (teşvik/kaynak temelli okuma)",
   "tagline": "Teşvikler, maliyetler, ikinci derece etkiler",
   "color": "#5fae7f",

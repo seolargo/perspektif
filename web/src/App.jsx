@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { DEV_FILL } from "./devFill.js";
 
 const ORNEK_METIN = `Buraya analiz etmek istediğin haber metnini yapıştır. En az birkaç paragraf olursa perspektifler daha çok şey yakalar.`;
 
@@ -159,6 +160,15 @@ export default function App() {
     }
   }, [text]);
 
+  const devFill = useCallback(() => {
+    setGlobalError(null);
+    setErrors({});
+    setRunning(false);
+    setMeta(DEV_FILL.meta);
+    setResults(DEV_FILL.results);
+    setSynthesis(DEV_FILL.synthesis);
+  }, []);
+
   return (
     <div className="page">
       <header>
@@ -176,6 +186,9 @@ export default function App() {
         />
         <button onClick={analyze} disabled={running || text.trim().length < 80}>
           {running ? "Perspektifler okuyor…" : "Analiz et"}
+        </button>
+        <button type="button" className="dev-fill" onClick={devFill} disabled={running}>
+          Örnek analiz
         </button>
       </div>
 

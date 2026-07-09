@@ -35,7 +35,7 @@ const PERSPECTIVE_SCHEMA = {
       type: "array",
       items: { type: "string" },
       description:
-        "Bu perspektifin metinde en yüksek belirginlik atadığı 3-5 olgu/detay. Metinden somut, alıntıya yakın.",
+        "Bu perspektifin metinde en yüksek belirginlik atadığı 2-3 olgu/detay. Her biri tek kısa cümle.",
     },
     yorumu: {
       type: "object",
@@ -52,7 +52,7 @@ const PERSPECTIVE_SCHEMA = {
       type: "array",
       items: { type: "string" },
       description:
-        "Bu perspektifin bilinen kör noktaları yüzünden bu metinde gözden kaçırdığı 2-4 şey. Dürüst öz-eleştiri.",
+        "Bu perspektifin bilinen kör noktaları yüzünden bu metinde gözden kaçırdığı 2 şey. Her biri tek kısa cümle.",
     },
     duygusal_yuk: {
       type: "number",
@@ -91,7 +91,7 @@ const SYNTHESIS_SCHEMA = {
     entegre_okuma: {
       type: "string",
       description:
-        "Normal insan aklı: tüm perspektiflerin birleşiminden çıkan, tek tek hiçbirinde olmayan bütünlüklü okuma. 2-3 paragraf.",
+        "Normal insan aklı: tüm perspektiflerin birleşiminden çıkan, tek tek hiçbirinde olmayan bütünlüklü okuma. Tek kısa paragraf, en fazla 4 cümle.",
     },
     ton_notu: {
       type: "string",
@@ -125,6 +125,7 @@ function buildPerspectiveSystemPrompt(p) {
     `- Sadece metinde olana dayan; metinde olmayan olgu uydurma.`,
     `- "kacirdigi" alanı bu analizin en değerli kısmı: kör noktaların yüzünden bu metinde gerçekten gözden kaçırmış olabileceğin şeyleri yaz.`,
     `- Türkçe yaz.`,
+    `- KISA yaz: her alan tek cümle, madde başına en fazla 15 kelime. Uzun paragraf yok.`,
   ].join("\n");
 }
 
@@ -159,6 +160,7 @@ async function runSynthesis(results, text) {
     `bu bir tanıklıktır, analiz nesnesi değil — analitik dil kurbanları nesneleştirmemeli. Nötr içerikte ton_notu boş string olsun.`,
     ``,
     `Türkçe yaz. Perspektiflerin söylediklerini özetleme; onların ÜZERİNE çık.`,
+    `KISA yaz: listelerde en fazla 3 madde, madde başına tek cümle. Entegre okuma tek kısa paragraf.`,
   ].join("\n");
 
   const payload = results.map((r) => ({

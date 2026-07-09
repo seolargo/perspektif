@@ -77,6 +77,13 @@ button:disabled {
   cursor: default;
 }
 
+button.dev-fill {
+  background: transparent;
+  color: #d8b46a;
+  border: 1px solid #d8b46a55;
+  font-weight: 500;
+}
+
 .global-error {
   margin-top: 1.2rem;
   background: #3a2026;
