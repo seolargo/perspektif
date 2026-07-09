@@ -2,9 +2,9 @@
 // İçerik gerçek bir analiz çıktısından alınmıştır (Ekhlas tanıklığı).
 export const DEV_FILL = {
   meta: [
-    { id: "erkek_akli", display_name: "Sistemci Bakış", tagline: "Kapasite, sorumluluk, eylem", color: "#4f8cc9" },
-    { id: "kadin_akli", display_name: "İlişkisel Bakış", tagline: "İnsan, bağ, yaşanmışlık", color: "#c95f8a" },
-    { id: "ekonomist_akli", display_name: "Teşvik Bakışı", tagline: "Teşvikler, maliyetler, ikinci derece etkiler", color: "#5fae7f" },
+    { id: "erkek_akli", display_name: "Erkek Aklı", tagline: "Kapasite, sorumluluk, eylem", color: "#4f8cc9" },
+    { id: "kadin_akli", display_name: "Kadın Aklı", tagline: "İnsan, bağ, yaşanmışlık", color: "#c95f8a" },
+    { id: "ekonomist_akli", display_name: "Piyasa Aklı", tagline: "Teşvikler, maliyetler, ikinci derece etkiler", color: "#5fae7f" },
   ],
   results: {
     erkek_akli: {
@@ -82,25 +82,25 @@ export const DEV_FILL = {
       "Çözümün hem uluslararası adalet/cezalandırma hem de hayatta kalanlara çok boyutlu destek (barınma, sağlık, hukuk vb.) gerektirdiği kabul ediliyor.",
     ],
     catisma: [
-      "Sistemci Bakış devleti ve güvenlik mekanizmalarını merkeze alırken, İlişkisel Bakış deneyimin duygusal, bedensel ve ilişkisel yıkımını merkeze alıyor; öncelik evrenleri farklı.",
-      "Teşvik Bakışı süreci teşvikler, kaynak akışları ve piyasa-benzeri “köle ticareti” kurgusu üzerinden okurken, İlişkisel Bakış bunu indirgemeci bulabilecek bir yerden daha çok travma ve özneleşme kaybına odaklanıyor.",
-      "Sistemci Bakış yapısal güvenlik hataları ve istihbarat operasyonlarını konuşurken, İlişkisel Bakış ve kısmen Teşvik Bakışı daha çok mağdurların iyileşme, tazminat ve toplumsal onarım süreçlerini önceliyor.",
+      "Erkek Aklı devleti ve güvenlik mekanizmalarını merkeze alırken, Kadın Aklı deneyimin duygusal, bedensel ve ilişkisel yıkımını merkeze alıyor; öncelik evrenleri farklı.",
+      "Piyasa Aklı süreci teşvikler, kaynak akışları ve piyasa-benzeri “köle ticareti” kurgusu üzerinden okurken, Kadın Aklı bunu indirgemeci bulabilecek bir yerden daha çok travma ve özneleşme kaybına odaklanıyor.",
+      "Erkek Aklı yapısal güvenlik hataları ve istihbarat operasyonlarını konuşurken, Kadın Aklı ve kısmen Piyasa Aklı daha çok mağdurların iyileşme, tazminat ve toplumsal onarım süreçlerini önceliyor.",
     ],
     kor_nokta_kapatmalari: [
       {
-        kim: "İlişkisel Bakış",
+        kim: "Kadın Aklı",
         neyi_kapatti:
-          "Sistemci Bakış'ın daha çok güvenlik ve ceza mekanizmalarına odaklanırken ihmal ettiği, beden bütünlüğü, yas, suçluluk duygusu ve uzun vadeli travma gerçekliğini görünür kılıyor.",
+          "Erkek Aklı'nın daha çok güvenlik ve ceza mekanizmalarına odaklanırken ihmal ettiği, beden bütünlüğü, yas, suçluluk duygusu ve uzun vadeli travma gerçekliğini görünür kılıyor.",
       },
       {
-        kim: "Teşvik Bakışı",
+        kim: "Piyasa Aklı",
         neyi_kapatti:
-          "Hem Sistemci Bakış hem İlişkisel Bakış'ın yeterince formüle etmediği “kölelik/pazarlık” boyutunu; cinsel şiddetin aynı zamanda örgütün gelir, ödül ve kontrol mekanizması olduğunu açığa çıkarıyor.",
+          "Hem Erkek hem Kadın Aklı'nın yeterince formüle etmediği “kölelik/pazarlık” boyutunu; cinsel şiddetin aynı zamanda örgütün gelir, ödül ve kontrol mekanizması olduğunu açığa çıkarıyor.",
       },
       {
-        kim: "Sistemci Bakış",
+        kim: "Erkek Aklı",
         neyi_kapatti:
-          "İlişkisel Bakış ve Teşvik Bakışı'nın daha arka planda bıraktığı, devletlerin ve uluslararası sistemin somut güvenlik/istihbarat çöküşünü ve bu çöküş onarılmadan tekrarın önlenemeyeceğini vurguluyor.",
+          "Kadın ve Piyasa Aklı'nın daha arka planda bıraktığı, devletlerin ve uluslararası sistemin somut güvenlik/istihbarat çöküşünü ve bu çöküş onarılmadan tekrarın önlenemeyeceğini vurguluyor.",
       },
     ],
   },

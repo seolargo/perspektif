@@ -84,6 +84,30 @@ button.dev-fill {
   font-weight: 500;
 }
 
+button.copy-btn {
+  background: transparent;
+  color: #8a93a8;
+  border: 1px solid #8a93a844;
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: auto;
+  align-self: center;
+  white-space: nowrap;
+}
+
+button.copy-btn:hover {
+  color: #d8dce6;
+  border-color: #8a93a8;
+}
+
+.synth-head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
 .global-error {
   margin-top: 1.2rem;
   background: #3a2026;

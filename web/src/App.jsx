@@ -3,12 +3,62 @@ import { DEV_FILL } from "./devFill.js";
 
 const ORNEK_METIN = `Buraya analiz etmek istediğin haber metnini yapıştır. En az birkaç paragraf olursa perspektifler daha çok şey yakalar.`;
 
+function CopyButton({ getText }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    await navigator.clipboard.writeText(getText());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+  return (
+    <button type="button" className="copy-btn" onClick={copy} title="Panoya kopyala">
+      {copied ? "Kopyalandı ✓" : "Kopyala"}
+    </button>
+  );
+}
+
+function perspectiveText(meta, result) {
+  return [
+    meta.display_name,
+    "",
+    "NEYE TAKILDI",
+    ...result.takildigi.map((t) => `- ${t}`),
+    "",
+    "NASIL YORUMLADI",
+    `Mesele: ${result.yorumu.problem_tanimi}`,
+    `Neden: ${result.yorumu.nedensel_yorum}`,
+    `Değerlendirme: ${result.yorumu.ahlaki_degerlendirme}`,
+    `Ne yapılmalı: ${result.yorumu.cozum_onerisi}`,
+    "",
+    "NEYİ KAÇIRDI",
+    ...result.kacirdigi.map((k) => `- ${k}`),
+  ].join("\n");
+}
+
+function synthesisText(data) {
+  return [
+    "Normal insan aklı — sentez",
+    "",
+    ...(data.ton_notu ? [data.ton_notu, ""] : []),
+    data.entegre_okuma,
+    "",
+    "UZLAŞMA",
+    ...data.uzlasma.map((u) => `- ${u}`),
+    "",
+    "ÇATIŞMA",
+    ...data.catisma.map((c) => `- ${c}`),
+    "",
+    "KÖR NOKTA KAPATMALARI",
+    ...data.kor_nokta_kapatmalari.map((k) => `- ${k.kim}: ${k.neyi_kapatti}`),
+  ].join("\n");
+}
+
 function PerspectiveCard({ meta, result, error, loading }) {
   return (
     <div className="card" style={{ "--accent": meta.color || "#888" }}>
       <div className="card-head">
         <h3>{meta.display_name}</h3>
-        <span className="tagline">{meta.tagline}</span>
+        {result && <CopyButton getText={() => perspectiveText(meta, result)} />}
       </div>
 
       {loading && (
@@ -64,7 +114,10 @@ function SynthesisPanel({ data }) {
   return (
     <div className="synthesis">
       {data.ton_notu ? <div className="tone-note">{data.ton_notu}</div> : null}
-      <h2>Normal insan aklı — sentez</h2>
+      <div className="synth-head">
+        <h2>Normal insan aklı — sentez</h2>
+        <CopyButton getText={() => synthesisText(data)} />
+      </div>
       <p className="integrated">{data.entegre_okuma}</p>
 
       <div className="synth-grid">
